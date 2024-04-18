@@ -2,7 +2,7 @@ import streamlit as st
 
 import streamlit as st
 
-st.set_page_config(page_title="Welcome", layout="centered")
+st.set_page_config(page_title="Spotify Exploration", layout="centered")
 
 st.title("Spotify Analysis")
 st.header("Welcome! 👋")
