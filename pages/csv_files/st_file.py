@@ -1,6 +1,7 @@
 import pandas as pd
 
 df = pd.read_csv("clean_data.csv")
+df["artist_track"] = df["first_artist"] + " - " + df["name"]
 
 df_1950s = df.query('decade == "1950s"')
 df_1950s.to_csv("data_1950s.csv", index=False)
