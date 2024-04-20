@@ -14,94 +14,6 @@ pio.templates.default = "plotly_dark"
 pd.set_option("display.precision", 2)
 
 df = pd.read_csv("pages/csv_files/clean_data.csv")
-df["artist_track"] = df["first_artist"] + " - " + df["name"]
-
-
-def fun_subplots_plotly(df, col):
-
-    mean_val = df[col].mean()
-    median_val = df[col].median()
-    fig = make_subplots(rows=1, cols=2, column_widths=[0.75, 0.25])
-
-    fig.add_trace(
-        go.Histogram(
-            x=df[col], name=f"Histogram {col}", marker={"color": "#EBA0AC"}, nbinsx=50
-        ),
-        row=1,
-        col=1,
-    )
-
-    fig.add_shape(
-        type="line",
-        xref="paper",
-        yref="y",
-        x0=-1,
-        x1=1,
-        y0=mean_val,
-        y1=mean_val,
-        row=1,
-        col=2,
-        line={"color": "#A6E3A1", "width": 3, "dash": "dot"},
-    )
-
-    fig.add_shape(
-        type="line",
-        xref="paper",
-        yref="y",
-        x0=-1,
-        x1=1,
-        y0=median_val,
-        y1=median_val,
-        row=1,
-        col=2,
-        line={"color": "#CBA6F7", "width": 3, "dash": "dot"},
-    )
-
-    fig.add_annotation(
-        xref="paper",
-        x=-0.7,
-        y=mean_val,
-        showarrow=True,
-        arrowhead=2,
-        text=f"Mean = {mean_val:.2f}",
-        row=1,
-        col=2,
-    )
-
-    fig.add_annotation(
-        xref="paper",
-        x=0.7,
-        y=median_val,
-        showarrow=True,
-        arrowhead=2,
-        text=f"Median = {median_val:.2f}",
-        row=1,
-        col=2,
-    )
-
-    fig.add_trace(
-        go.Box(y=df[col], name=f"Boxplot {col}", marker={"color": "#F9E2AF"}),
-        row=1,
-        col=2,
-    )
-
-    fig.update_layout(
-        title={"text": f"Distribution Plot {col}", "font": {"size": 24}},
-        legend={
-            "orientation": "h",
-            "yanchor": "bottom",
-            "y": 1.02,
-            "xanchor": "right",
-            "x": 1,
-        },
-    )
-    fig.update_yaxes(title_text="Count", row=1, col=1)
-    fig.update_yaxes(title_text=f"{col}", row=1, col=2)
-    fig.update_xaxes(title_text=f"{col}", row=1, col=1)
-    fig.update_xaxes(title_text="", row=1, col=2)
-
-    return fig
-
 
 st.set_page_config(page_title="Overall Analysis", layout="wide")
 
@@ -355,7 +267,7 @@ st.write(
 st.write("")
 
 st.write(
-    'I did not mention the popularity because it is not really comparable. Spotify is mainly used by younger generations, and they (we) listen to more modern music than older generations, therefore the popularity of newer tracks will be higher than older tracks, especially when not so "known" songs are in the mix. When going in deep per decade we will rescale this to show a more accurate figure per decade.'
+    'I did not mention the popularity because it is not really comparable. Spotify is mainly used by younger generations, and they (we) listen to more modern music than older generations, therefore the popularity of newer tracks will be higher than older tracks, especially when not so "known" songs are in the mix. Either way, I considered it important to show this as SOME artist or tracks might have the same popularity disregarding the decade.'
 )
 
 st.write("")
