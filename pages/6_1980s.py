@@ -15,7 +15,7 @@ pio.templates.default = "plotly_dark"
 
 pd.set_option("display.precision", 2)
 
-df = pd.read_csv("pages/csv_files/data_1960s.csv")
+df = pd.read_csv("pages/csv_files/data_1980s.csv")
 df["explicit"] = df["explicit"].map({0: "Not Explicit", 1: "Explicit"})
 
 
@@ -105,20 +105,20 @@ def fun_subplots_plotly(df, col):
     return fig
 
 
-st.set_page_config(page_title="1960s Analysis", layout="wide")
+st.set_page_config(page_title="1980s Analysis", layout="wide")
 
-st.title("Review of 1960s songs")
+st.title("Review of 1980s songs")
 
 st.write("")
 
 st.write(
-    "The 1960s decade was an interesting decade. In musical terms, a lot of changes began to happen: although acoustic guitars were still being used, electric instruments began to be more widely used. Also stereo systems (for younger people: two speakers, before it was only one speaker) were beginning to be used, songs began to be more openly critical towards governments and more activism was in the air."
+    "Normally this decade is thought as the either the glam-metal era or the pop era. But if we consider the 90s... I don't know. The fact is that there was a new way of consuming music as well since MTV began trasmissions. Music began to be attached to a visual form and it could be reinterpretated and, even sometimes, better understood."
 )
 
 st.write("")
 
 st.write(
-    "Music legends were born in this decade, especially in the rock scene. Some of them are still liked even in younger generations today and even actively touring: The Beatles, Paul McCartney, The Rolling Stones, Jimmy Hendrix, Carlos Santana, The Doors, Janis Joplin, Eric Clapton... and some legends from the 1950s were still active. But let's see the average values of the musical features according to Spotify"
+    "On the negative side, there was a big movement in USA for rating and, if needed, censor some music and lyrics depending on its contents. Therefore, you will see an increase in the counts of explicit or not explicit songs, as the outcome of the movement came a warning of whether a song was mature -whatever that means- or not."
 )
 
 st.write("")
@@ -164,13 +164,7 @@ st.plotly_chart(fig, use_container_width=True)
 del new_df
 
 st.write(
-    'In the "higher" side still is *Acoustic*, although lower than the 1950s. *Danceability* pretty much stayed the same, it just increased 0.1 on average.'
-)
-
-st.write("")
-
-st.write(
-    'The major changes are seen in *Energy* increased in 0.13, *Instrumentalness* increased in 0.7, and *Valence* increased in 0.07. I highlight the increase in Valence because it is impressive to have this increase in the "happiness" in the music over time.'
+    "So pretty much all of the features' values are around the same in the 1970s, except *Acousticness* which keeps descending decade after deacde."
 )
 
 st.write("")
@@ -196,7 +190,7 @@ st.plotly_chart(fig, use_container_width=True)
 st.write("")
 
 st.write(
-    'As mentioned before, not so many tracks were considered "explicit" as there was not a mandatory "rating" system in place, but it is also true that barely any songs contained any explicit lyrics.'
+    'As you see, there are "a little more" songs identified as explicit compared to other decades. Now you can even see a part of the bar.'
 )
 
 st.write("")
@@ -221,12 +215,12 @@ st.plotly_chart(fig, use_container_width=True)
 st.write("")
 
 st.write(
-    "As in the last decade, the most used key was C - major. Although the interesting thing to see is that the top five keys are all major keys. "
+    "C-major is still the most used key. Now A-Minor and B-Minor are the most used keys in the minor scale. D#-Minor is still the less used."
 )
 
 st.write("")
 
-st.write("Now let's check what the top 50 artists are for the 1960s")
+st.write("Now let's check what the top 50 artists are for the 1980s")
 
 st.write("")
 
@@ -280,6 +274,12 @@ fig.update_layout(
 fig.update_yaxes(tickfont={"size": 14})
 st.plotly_chart(fig, use_container_width=True)
 
+st.write("")
+
+st.write(
+    "So you can see a great mix of pop, rock, metal and some country (at least in Spanish). What makes this great is it is not only English-speaking artists, but also Spanish ones."
+)
+
 artist_df = pd.DataFrame()
 
 for i in new_df["first_artist"].unique():
@@ -288,7 +288,7 @@ for i in new_df["first_artist"].unique():
 artist_df = artist_df.reset_index(drop=True)
 
 st.write(
-    "You can select an artist in the top 50 if you would like to see the average value of the features of the tracks they have recorded in the decade:"
+    "Below you can select an artist in the top 50 if you would like to see the average value of the features of the tracks they have recorded in the decade:"
 )
 
 artist_list = artist_df["first_artist"].unique().tolist()
